@@ -7,6 +7,6 @@
 
 export enum TypesKeys {
     GOODS_RECEIVED = 'GOODS_RECEIVED',
-    GOODS_LOADING = 'GOODS_LOADING'
+    CLICK_ON_ITEM = 'CLICK_ON_ITEM'
 }
 

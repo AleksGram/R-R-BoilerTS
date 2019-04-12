@@ -26,7 +26,7 @@ class GoodList  extends Component<Props, IState>  {
     }
 
     render () {
-        const {goods, loading } = this.props;
+        const {goods, loading, itemClicked } = this.props;
 
         if (loading) {
             return <Loader/>
@@ -38,6 +38,7 @@ class GoodList  extends Component<Props, IState>  {
                         return (
                             <li key={item.id}>
                                 <GoodListItem itemData={item} />
+                                {/* {(itemClicked)? <h1>Your clicked it</h1> : null} */}
                             </li>
                         )
                     })
@@ -48,9 +49,10 @@ class GoodList  extends Component<Props, IState>  {
 
 }
 
-const mapStateToProps = ({loading, goods}:IState) => ({
+const mapStateToProps = ({loading, goods, itemClicked}:IState) => ({
     loading,
-    goods
+    goods,
+    itemClicked
 })
 
 

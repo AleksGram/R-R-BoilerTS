@@ -7,15 +7,26 @@ export interface GoodsReceiver {
     payload: Item[]
 }
 
+export interface ClickOnItem {
+    type: TypesKeys.CLICK_ON_ITEM,
+    id: number
+}
+
 const goodsReceived = (newGoods:Item[]):GoodsReceiver => ({
     type: TypesKeys.GOODS_RECEIVED,
     payload: newGoods
 })
 
+const clickOnItem = (id:number):ClickOnItem => ({
+    type: TypesKeys.CLICK_ON_ITEM,
+    id
+})
 
 export type ActionsType =
     | GoodsReceiver
+    | ClickOnItem
 
 export  {
-    goodsReceived
+    goodsReceived,
+    clickOnItem
 }
