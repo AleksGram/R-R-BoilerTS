@@ -1,8 +1,14 @@
 import React from 'react';
 
+export type Item = {
+    id: number,
+    name: string,
+    price: number
+}
+
 export interface IStoreService {
-    data: object[],
-    getItems: () => Promise<Object[]>
+    data: Item[],
+    getItems: () => Promise<Item[]>
 }
 
 const {

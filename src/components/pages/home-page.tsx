@@ -1,8 +1,13 @@
 import React from 'react';
+import GoodList from '../good-list/good-list';
+
 
 const HomePage = () => {
     return (
-        <div>Good - List Component</div>
+        <div>
+             <GoodList/>
+        </div>
+       
     )
 }
 

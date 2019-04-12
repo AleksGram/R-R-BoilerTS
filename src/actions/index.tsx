@@ -1,13 +1,13 @@
-import * as ActionType from './action-types';
-import {TypesKeys} from './action-types/'
+import {TypesKeys} from './action-types/';
+import { Item } from '../utilities/store-service-context/store-service-context'
 
 
 export interface GoodsReceiver {
     type: TypesKeys.GOODS_RECEIVED,
-    payload: object[]
+    payload: Item[]
 }
 
-const goodsReceived = (newGoods:Object[]):GoodsReceiver => ({
+const goodsReceived = (newGoods:Item[]):GoodsReceiver => ({
     type: TypesKeys.GOODS_RECEIVED,
     payload: newGoods
 })
