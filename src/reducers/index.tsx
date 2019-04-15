@@ -6,14 +6,14 @@ import { Item } from '../utilities/store-service-context/store-service-context'
 export type IState = {
     goods: Item[],
     loading: boolean,
-    itemClicked: boolean
+    itemClickedId: number | null
 }
 
 
 const initialState: IState = {
     goods: [],
     loading: true,
-    itemClicked: false
+    itemClickedId: null
 }
 
 const reducer = (state = initialState, action: ActionsType) => {
@@ -25,16 +25,11 @@ const reducer = (state = initialState, action: ActionsType) => {
                 loading: false
             };
         case TypesKeys.CLICK_ON_ITEM:
-               const {goods}=state;
-               goods.map((item)=> {
-                   (item.id == action.id)? item.name = 'SOLD': null
-               }) 
-               
-               return {
+            return {
                 ...state,
-                goods,
-                itemClicked: true
-            }
+                itemClickedId: action.id
+            };
+               
         default:
             return state
     }

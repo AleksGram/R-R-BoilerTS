@@ -5,36 +5,36 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { compose } from 'redux';
 import withStoreService from './../hoc/with-store-service';
-import  {IState}  from '../../reducers'
+import { IState } from '../../reducers'
 import './good-list.scss';
-import {TypesKeys} from '../../actions/action-types'
+import { TypesKeys } from '../../actions/action-types'
 import { Item } from '../../utilities/store-service-context/store-service-context'
 
 
 interface IGoodList {
-    storeService: {goods: Item[],  getItems: () => Promise<Item[]>}
-    goodsReceived: (goods:Item[])=>TypesKeys.GOODS_RECEIVED
+    storeService: { goods: Item[], getItems: () => Promise<Item[]> }
+    goodsReceived: (goods: Item[]) => TypesKeys.GOODS_RECEIVED
 }
 
 type Props = IGoodList & IState;
-class GoodList  extends Component<Props, IState>  {
+class GoodList extends Component<Props, IState>  {
 
-    componentDidMount () {
-        const {storeService, goodsReceived} = this.props;
+    componentDidMount() {
+        const { storeService, goodsReceived } = this.props;
         storeService.getItems()
             .then((data) => goodsReceived(data))
     }
 
     render () {
-        const {goods, loading, itemClicked } = this.props;
+        const {goods, loading, itemClickedId } = this.props;
 
         if (loading) {
-            return <Loader/>
+            return <Loader />
         }
         return (
             <ul>
                 {
-                    goods.map((item)=>{
+                    goods.map((item) => {
                         return (
                             <li key={item.id}>
                                 <GoodListItem itemData={item} />
@@ -43,16 +43,18 @@ class GoodList  extends Component<Props, IState>  {
                         )
                     })
                 }
+                {(itemClickedId) ? <h1>Clicked</h1> : null}
+
             </ul>
         )
     }
 
 }
 
-const mapStateToProps = ({loading, goods, itemClicked}:IState) => ({
+const mapStateToProps = ({loading, goods, itemClickedId}:IState) => ({
     loading,
     goods,
-    itemClicked
+    itemClickedId
 })
 
 
