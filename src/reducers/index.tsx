@@ -25,8 +25,14 @@ const reducer = (state = initialState, action: ActionsType) => {
                 loading: false
             };
         case TypesKeys.CLICK_ON_ITEM:
+        
+            const newGoods = JSON.parse(JSON.stringify(state.goods));
+            newGoods.map((item:any) => {
+                (item.id == action.id) ? item.name = 'SOLD': null;
+            })
             return {
                 ...state,
+                goods: newGoods,
                 itemClickedId: action.id
             };
                
